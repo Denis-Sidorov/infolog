@@ -1,0 +1,26 @@
+{
+    "name": "swarmix/infolog",
+    "description": "Library for simplify work with infolog format.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Denis.Sidorov",
+            "email": "Keeping.it.real.tlt@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Swarmix\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { "Swarmix\\Tests\\": "tests/" },
+        "files": ["vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"]
+    }
+}
