@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
 
-namespace Swarmix\Reader;
+namespace Swarmix\Schema;
 
 
 /**
  * Class Parser
  * @package Reader
  */
-final class SchemaRow
+final class Row
 {
     const FIELDSET_CODE_PREFIX = 'GEEX';
     const FIELD_CODE_PREFIX = "''";
@@ -24,15 +24,15 @@ final class SchemaRow
     /**
      * @var string[]
      */
-    private $line;
+    private $row;
 
     /**
      * Parser constructor.
-     * @param string[] $line
+     * @param string[] $row
      */
-    public function __construct(array $line)
+    public function __construct(array $row)
     {
-        $this->line = $line;
+        $this->row = $row;
     }
 
     /**
@@ -40,7 +40,7 @@ final class SchemaRow
      */
     public function getFieldsetCode(): string
     {
-        return trim($this->line[self::FIELDSET_CODE_INDEX], self::WHITESPACE_CHARS . self::FIELDSET_CODE_PREFIX);
+        return trim($this->row[self::FIELDSET_CODE_INDEX], self::WHITESPACE_CHARS . self::FIELDSET_CODE_PREFIX);
     }
 
     /**
@@ -48,7 +48,7 @@ final class SchemaRow
      */
     public function getFieldCode(): string
     {
-        return trim($this->line[self::FIELD_CODE_INDEX], self::WHITESPACE_CHARS . self::FIELD_CODE_PREFIX);
+        return trim($this->row[self::FIELD_CODE_INDEX], self::WHITESPACE_CHARS . self::FIELD_CODE_PREFIX);
     }
 
     /**
@@ -56,7 +56,7 @@ final class SchemaRow
      */
     public function getName(): ?string
     {
-        return trim($this->line[self::NAME_INDEX], self::WHITESPACE_CHARS) ?: null;
+        return trim($this->row[self::NAME_INDEX], self::WHITESPACE_CHARS) ?: null;
     }
 
     /**
@@ -64,7 +64,7 @@ final class SchemaRow
      */
     public function getDescription(): ?string
     {
-        return trim($this->line[self::DESCRIPTION_INDEX], self::WHITESPACE_CHARS);
+        return trim($this->row[self::DESCRIPTION_INDEX], self::WHITESPACE_CHARS) ?: null;
     }
 
     /**
@@ -72,7 +72,7 @@ final class SchemaRow
      */
     public function getPosition(): ?int
     {
-        return is_numeric($this->line[self::POSITION_INDEX]) ? (int) $this->line[self::POSITION_INDEX] : null;
+        return is_numeric($this->row[self::POSITION_INDEX]) ? (int) $this->row[self::POSITION_INDEX] : null;
     }
 
     /**
@@ -80,6 +80,6 @@ final class SchemaRow
      */
     public function getLength(): ?int
     {
-        return is_numeric($this->line[self::POSITION_INDEX]) ? (int) $this->line[self::LENGTH_INDEX] : null;
+        return is_numeric($this->row[self::POSITION_INDEX]) ? (int) $this->row[self::LENGTH_INDEX] : null;
     }
 }

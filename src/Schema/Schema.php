@@ -17,7 +17,7 @@ final class Schema
     private $container;
 
     /**
-     * @param \Swarmix\Schema\Element\Fieldset $fieldset
+     * @param Fieldset $fieldset
      * @return $this
      */
     public function add(Fieldset $fieldset): self

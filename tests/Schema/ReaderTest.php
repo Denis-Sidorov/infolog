@@ -1,20 +1,21 @@
 <?php
 
-namespace Swarmix\Tests\Reader;
+namespace Swarmix\Tests\Schema;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
-use Swarmix\Reader\SchemaLoader;
+use Swarmix\Schema\Reader;
 
-class SchemaLoaderTest extends TestCase
+class ReaderTest extends TestCase
 {
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testRead()
     {
-        $schemaPath = __DIR__ . '/../../src/resource/schema.csv';
-        $loader = new SchemaLoader();
-        $schema = $loader->load($schemaPath);
+        $schemaPath = __DIR__ . '/../resource/schema.csv';
+        $loader = new Reader();
+        $schema = $loader->read($schemaPath);
 
         $set = $schema->get('0000');
         assertNotNull($set, 'No fieldset for "0000" code');

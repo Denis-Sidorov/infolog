@@ -36,6 +36,11 @@ final class Field
     private $length;
 
     /**
+     * @var string
+     */
+    private $value;
+
+    /**
      * Field constructor.
      * @param string $code
      */
@@ -47,13 +52,21 @@ final class Field
     /**
      * @return string
      */
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+
+    /**
+     * @return string
+     */
     public function getCode(): string
     {
         return $this->code;
     }
 
     /**
-     * @return ?string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -121,6 +134,24 @@ final class Field
     public function setLength(?int $length): Field
     {
         $this->length = $length;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param string|null $value
+     * @return Field
+     */
+    public function setValue(?string $value): Field
+    {
+        $this->value = $value;
         return $this;
     }
 }

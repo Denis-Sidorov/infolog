@@ -1,22 +1,21 @@
 <?php declare(strict_types=1);
 
 
-namespace Swarmix\Reader;
+namespace Swarmix\Schema;
 
 
 use Exception;
-use Swarmix\Schema\Schema;
 use Swarmix\Schema\Element\Field;
 use Swarmix\Schema\Element\Fieldset;
 
-final class SchemaLoader
+final class Reader
 {
     /**
      * @param string $path
      * @return Schema
      * @throws Exception
      */
-    public function load(string $path): Schema
+    public function read(string $path): Schema
     {
         if (!file_exists($path)) {
             throw new Exception("File not found: {$path}");
@@ -29,7 +28,7 @@ final class SchemaLoader
 
         $schema = new Schema();
         while (($row = fgetcsv($schemaSource, 0, ';')) !== false) {
-            $schemaRow = new SchemaRow($row);
+            $schemaRow = new Row($row);
             $field = (new Field($schemaRow->getFieldCode()))
                 ->setName($schemaRow->getName())
                 ->setDescription($schemaRow->getDescription())

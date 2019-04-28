@@ -1,11 +1,11 @@
 <?php
 
-namespace Swarmix\tests\Reader;
+namespace Swarmix\Tests\Schema;
 
-use Swarmix\Reader\SchemaRow;
+use Swarmix\Schema\Row;
 use PHPUnit\Framework\TestCase;
 
-class SchemaRowTest extends TestCase
+class RowTest extends TestCase
 {
     public function schemaProvider()
     {
@@ -38,54 +38,54 @@ class SchemaRowTest extends TestCase
     /**
      * @dataProvider schemaProvider
      */
-    public function testGetFieldCode($line, $expected)
+    public function testGetFieldCode($row, $expected)
     {
-        $parser = new SchemaRow($line);
-        assertEquals($expected['fieldCode'], $parser->getFieldCode());
+        $row = new Row($row);
+        assertEquals($expected['fieldCode'], $row->getFieldCode());
     }
     
     /**
      * @dataProvider schemaProvider
      */
-    public function testGetDescription($line, $expected)
+    public function testGetDescription($row, $expected)
     {
-        $parser = new SchemaRow($line);
-        assertEquals($expected['description'], $parser->getDescription());
+        $row = new Row($row);
+        assertEquals($expected['description'], $row->getDescription());
     }
 
     /**
      * @dataProvider schemaProvider
      */
-    public function testGetName($line, $expected)
+    public function testGetName($row, $expected)
     {
-        $parser = new SchemaRow($line);
-        assertEquals($expected['name'], $parser->getName());
+        $row = new Row($row);
+        assertEquals($expected['name'], $row->getName());
     }
 
     /**
      * @dataProvider schemaProvider
      */
-    public function testGetPosition($line, $expected)
+    public function testGetPosition($row, $expected)
     {
-        $parser = new SchemaRow($line);
-        assertEquals($expected['position'], $parser->getPosition());
+        $row = new Row($row);
+        assertEquals($expected['position'], $row->getPosition());
     }
 
     /**
      * @dataProvider schemaProvider
      */
-    public function testGetFieldsetCode($line, $expected)
+    public function testGetFieldsetCode($row, $expected)
     {
-        $parser = new SchemaRow($line);
-        assertEquals($expected['fieldsetCode'], $parser->getFieldsetCode());
+        $row = new Row($row);
+        assertEquals($expected['fieldsetCode'], $row->getFieldsetCode());
     }
 
     /**
      * @dataProvider schemaProvider
      */
-    public function testGetLength($line, $expected)
+    public function testGetLength($row, $expected)
     {
-        $parser = new SchemaRow($line);
-        assertEquals($expected['length'], $parser->getLength());
+        $row = new Row($row);
+        assertEquals($expected['length'], $row->getLength());
     }
 }

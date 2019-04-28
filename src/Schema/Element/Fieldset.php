@@ -4,11 +4,14 @@
 namespace Swarmix\Schema\Element;
 
 
+use IteratorAggregate;
+use Traversable;
+
 /**
  * Class Fieldset
  * @package Swarmix\Element
  */
-final class Fieldset
+final class Fieldset implements IteratorAggregate
 {
     /**
      * @var string
@@ -18,7 +21,7 @@ final class Fieldset
     /**
      * @var Field[]
      */
-    private $container;
+    private $container = [];
 
     /**
      * Fieldset constructor.
@@ -48,6 +51,16 @@ final class Fieldset
     }
 
     /**
+     * @param Field[] $fields
+     * @return $this
+     */
+    public function addAll(array $fields): self
+    {
+        $this->container = array_merge($this->container, $fields);
+        return $this;
+    }
+
+    /**
      * @param string $code
      * @return Field|null
      */
@@ -56,4 +69,25 @@ final class Fieldset
         return $this->container[$code] ?? null;
     }
 
+    /**
+     * @return Field[]
+     */
+    public function all(): array
+    {
+        return $this->container;
+    }
+
+    /**
+     * Retrieve an external iterator
+     * @link https://php.net/manual/en/iteratoraggregate.getiterator.php
+     * @return Traversable|Field[] An instance of an object implementing <b>Iterator</b> or
+     * <b>Traversable</b>
+     * @since 5.0.0
+     */
+    public function getIterator()
+    {
+        foreach ($this->container as $field) {
+            yield $field;
+        }
+    }
 }
