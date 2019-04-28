@@ -37,6 +37,16 @@ final class Container implements IteratorAggregate
     }
 
     /**
+     * @return string[]
+     */
+    public function getCodes(): array
+    {
+        return array_map(function (Fieldset $fieldset) {
+            return $fieldset->getCode();
+        }, $this->container);
+    }
+
+    /**
      * Retrieve an external iterator
      * @link https://php.net/manual/en/iteratoraggregate.getiterator.php
      * @return Fieldset[]|Traversable An instance of an object implementing <b>Iterator</b> or
